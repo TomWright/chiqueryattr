@@ -1,4 +1,4 @@
-package chiqueryattr
+package chiuriattr
 
 import (
 	"net/http"
@@ -10,10 +10,10 @@ import (
 )
 
 var (
-	// Delimiter specifies the string that will be used to split query parameters when the target is a slice
+	// Delimiter specifies the string that will be used to split uri parameters when the target is a slice
 	Delimiter = ","
 
-	tag             = "queryattr"
+	tag             = "uriattr"
 	stringType      = reflect.TypeOf("")
 	stringSliceType = reflect.TypeOf(make([]string, 0))
 
@@ -21,13 +21,13 @@ var (
 	ErrNonPointerTarget = errors.New("invalid Unmarshal target. must be a pointer")
 	// ErrInvalidRequest is returned when the given *url.URL is nil
 	ErrInvalidRequest = errors.New("invalid request provided")
-	// ErrInvalidDelimiter is returned when trying to split a query param into a slice with an invalid separator
-	ErrInvalidDelimiter = errors.New("invalid query attr separator")
+	// ErrInvalidDelimiter is returned when trying to split a uri param into a slice with an invalid separator
+	ErrInvalidDelimiter = errors.New("invalid uri attr separator")
 	// ErrNilSliceField is returned when Unmarshal is given a slice target that has not been initialised
 	ErrNilSliceField = errors.New("field target of slice cannot be nil")
 )
 
-// Unmarshal attempts to parse query attributes from the specified URL and store any found values
+// Unmarshal attempts to parse uri attributes from the specified URL and store any found values
 // into the given interface
 func Unmarshal(r *http.Request, i interface{}) error {
 	if r == nil {
